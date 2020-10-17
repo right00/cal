@@ -12,12 +12,12 @@
     {%endif%}
     <form method="POST">
         {% csrf_token %}
-        {%if username%}
-        <h3>ユーザーネーム</h3>
-        <input type="input" min="1" name="username" value="{{username}}"><br>
+        {%if email%}
+        <h3>メールアドレス</h3>
+        <input type="input" min="1" name="email" value="{{email}}"><br>
         {%else%}
-        <h3>ユーザーネーム</h3>
-        <input type="input" min="1" name="username"><br>
+        <h3>メールアドレス</h3>
+        <input type="input" min="1" name="email"><br>
         {%endif%}
         <h3>パスワード(4文字以上)</h3> 
         <input type="password" min="4" name="password"><br>

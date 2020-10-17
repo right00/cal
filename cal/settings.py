@@ -142,4 +142,4 @@ django_heroku.settings(locals())
 LOGIN_URL='login'
 LOGIN_REDIRECT_URL = 'main:home'
 LOGOUT_REDIRECT_URL = 'public:top'
-
+AUTH_USER_MODEL = 'accounts.User'

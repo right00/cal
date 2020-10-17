@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>時間割</title>
+</head>
+<body>
+    <h2>timetable</h2>
+
+    <p><a href="{% url 'main:tablestatus' %}">時間割の設定</a></p>
+    <table >
+        <tr>
+          <th> </th>
+          <th>　　日　　</th>
+          <th>　　月　　</th>
+          <th>　　火　　</th>
+          <th>　　水　　</th>
+          <th>　　木　　 </th>
+          <th>　　金　　</th>
+          <th>　　土　　</th>       
+     </tr>
+     {%for content in contents%}
+     <tr>
+         <th>{{content.period.period}}限</th>
+         <td>{{content.mon.name}}</td>
+         <td>{{content.tue.name}}</td>
+         <td>{{content.wed.name}}</td>
+         <td>{{content.thu.name}}</td>
+         <td>{{content.fri.name}}</td>
+         <td>{{content.sta.name}}</td>
+     </tr>
+     {%endfor%}
+      </table>
+</body>
+</html>

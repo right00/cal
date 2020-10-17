@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>授業の追加</title>
+</head>
+<body>
+    <form method="POST">
+        {%csrf_token%}
+        <h3>授業名</h3>
+        <input type="text" size="5">
+        <input type="hidden" name = "num" value="{{sep.period}}" />
+        <h3>曜日</h3>
+        <select name=”dayof”>
+            <option value=”0”>月曜</option>
+            <option value=”1”>火曜</option>
+            <option value="2">水曜</option>
+            <option value=”3”>木曜</option>
+            <option value=”4”>金曜</option>
+            <option value=”5”>土曜</option>
+        </select>
+　　　　<h3>時間</h3>
+        <select name=”period”>
+            {%for num in nums%}
+            <option value=”{{num}}”>{{num}}限</option>
+            {%endfor%}
+        </select>
+        <h3>色</h3>
+        <select name=”period”>
+            <option value=”black”>黒</option>
+            <option value=”red”><font color="red">赤</font></option>
+            <option value=”blue”><font color="blue">青</font></option>
+            <option value=”green”><font color="green">緑</font></option>
+        </select>
+        <input type="submit" value="追加"/>
+        </form>
+</body>
+</html>
