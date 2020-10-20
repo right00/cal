@@ -4,35 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>授業の追加</title>
-</head>
+    {% load static %}
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="{%static 'js/selectColor.js'%}"></script>
 <body>
     <form method="POST">
         {%csrf_token%}
         <h3>授業名</h3>
-        <input type="text" size="5">
-        <input type="hidden" name = "num" value="{{sep.period}}" />
+        <input type="text" size="5" name='name'>
+        <br>
+        <h3>授業について</h3>
+        <h5 style="color:gray">(urlの先頭に@つけるとまとめて開くが使えます。)</h5>
+        <textarea name='content' cols="60" rows="4"></textarea>
         <h3>曜日</h3>
-        <select name=”dayof”>
-            <option value=”0”>月曜</option>
-            <option value=”1”>火曜</option>
-            <option value="2">水曜</option>
-            <option value=”3”>木曜</option>
-            <option value=”4”>金曜</option>
-            <option value=”5”>土曜</option>
+        <select name='dayof'>
+            <option value='0'>月曜</option>
+            <option value='1'>火曜</option>
+            <option value='2'>水曜</option>
+            <option value='3'>木曜</option>
+            <option value='4'>金曜</option>
+            <option value='5'>土曜</option>
         </select>
 　　　　<h3>時間</h3>
-        <select name=”period”>
+        <select name='periodnum'>
             {%for num in nums%}
-            <option value=”{{num}}”>{{num}}限</option>
+            <option value='{{num}}'>{{num}}限</option>
             {%endfor%}
         </select>
-        <h3>色</h3>
-        <select name=”period”>
-            <option value=”black”>黒</option>
-            <option value=”red”><font color="red">赤</font></option>
-            <option value=”blue”><font color="blue">青</font></option>
-            <option value=”green”><font color="green">緑</font></option>
+        <h3 >色</h3>
+        <div >
+        <select class="selectColor" name='color'>
+            <option value='black' style='color: black'>black</option>
+            <option value='gray' style='color: gray'>gray</option>
+            <option value='sliver' style='color: silver'>silver</option>
+            <option value='white' style='color: #d9d9d9'>white</option>
+            <option value='blue' style="color:blue">blue</option>
+            <option value='navy' style='color: navy'>navy</option>
+            <option value='aqua' style='color: aqua'>aqua</option>
+            <option value='teal' style="color:teal">teal</option>
+            <option value='lime' style="color:lime">lime</option>
+            <option value='green' style="color:green">green</option>
+            <option value='yellowgreen' style="color:yellowgreen">yellowgreen</option>
+            <option value='yellow' style="color:yellow">yellow</option>
+            <option value='olive' style="color:olive">olive</option>
+            <option value='orange' style="color:orange">orange</option>
+            <option value='red' style="color:red;">red</option>
+            <option value='maroon' style="color:maroon;">maroon</option>
+            <option value='fuchsia' style="color:fuchsia;">fuchsia</option>
+            <option value='purple' style="color:purple;">purple</option>
         </select>
+        </div>
         <input type="submit" value="追加"/>
         </form>
 </body>

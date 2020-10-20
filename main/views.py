@@ -2,6 +2,7 @@ from django.shortcuts import render ,redirect
 from django.contrib.auth.decorators import login_required
 from main.models import TimeTable,LessonField,link,Separation
 from main.timetable import createtimetable
+import copy
 # Create your views here.
 
 @login_required
@@ -17,9 +18,16 @@ def timetable(request):
     separations = Separation.objects.filter(timetable=timetable).order_by("period")
     contents = []
     for sep in separations:
-        d={"name":""}
-        ds=[d,d,d,d,d,d]
-        data = {"period" : sep,"mon":ds[0],"tue":ds[1],"wed":ds[2],"thu":ds[3],"fri":ds[4],"sta":ds[5]}
+        ds=[]
+        for i in range(6):
+            if(LessonField.objects.filter(period=sep.period,dayof=i,timetable=timetable).exists()):
+                lesson = LessonField.objects.get(period=sep.period,dayof=i,timetable=timetable)
+                print(lesson.name+":"+str(lesson.period)+":"+str(lesson.dayof))
+                d={"name":lesson.name,"color":lesson.color}
+                ds.append(d)
+            else:
+                ds.append({"name":""})
+        data = {"period" : sep,"week":ds}
         contents.append(data)
     data={"contents":contents}
     return render(request,"timetable/main.html",data)
@@ -89,6 +97,20 @@ def createlessonfield(request):
     if(request.method!="POST"):
         data={"nums":range(1,separations.count()+1)}
         return render(request,"timetable/createlessonfield.html",data)
+    if(LessonField.objects.filter(period = int(request.POST['periodnum']),dayof = int(request.POST['dayof']),timetable=timetable).exists()):
+        data={"nums":range(1,separations.count()+1),"alert":"そのスペースにはすでに授業が存在します"}
+        return render(request,"timetable/createlessonfield.html",data)
+    lesson = LessonField.objects.create(
+    name = request.POST["name"],
+    color = request.POST['color'],
+    period = int(request.POST['periodnum']),
+    dayof = int(request.POST['dayof']),
+    content = request.POST['content'],
+    timetable = timetable)
+    lesson.save()
+    return redirect("main:home")
+
+    
     
     
     
