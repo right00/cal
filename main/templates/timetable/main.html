@@ -26,7 +26,7 @@
          <th>{{content.period.period}}限</th>
          {%for lesson in content.week %}
          {%if lesson.color%}
-         <td style="color:{{lesson.color}}">{{lesson.name}}</td>
+         <td ><a href="../lesson/contents/{{lesson.id}}/"style="color:{{lesson.color}}">{{lesson.name}}</td>
         {%else%}
         <td>{{lesson.name}}</td>
         {%endif%}

@@ -17,6 +17,7 @@ class LessonField(models.Model):
     content = models.TextField()
     timetable = models.ForeignKey(TimeTable,on_delete=models.CASCADE)
 
+
 class link(models.Model):
     value = models.TextField()
     url = models.TextField()

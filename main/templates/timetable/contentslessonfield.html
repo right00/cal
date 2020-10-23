@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>授業の詳細</title>
+    {% load static %}
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="{%static 'js/selectColor.js'%}"></script>
+    <script src="{%static 'js/link.js'%}"></script>
+</head>
+<body>
+{% if type == "nomal" %}
+<h3 style="color:{{lesson.color}}">{{lesson.name}}</h3>
+    <h4>{{week}}曜日</h4>
+    <h4>{{lesson.period}}限</h4>
+    <div class="autolink" >{{lesson.content}}</div>
+    <form method="POST">
+        {%csrf_token%}
+
+        <input type="hidden" name="request" value="changepage"/>
+        <input type="submit" value="変更"/>
+    </form>
+{%elif type == "changecontent" %}
+<form method="POST" >
+    {%csrf_token%}
+    <h3>授業名</h3>
+    <input type="text" size="5" name='name' value="{{lesson.name}}">
+    <br>
+    <h3>授業について</h3>
+    <textarea name='content' cols="60" rows="4" >{{lesson.content}}</textarea>
+    <h3 >色</h3>
+    <div >
+    <select class="selectColor" name='color' >
+        {%for color in colors%}
+
+            {%if color.selected%}
+        <option value='{{color.color}}' style='color: {{color.color}}' selected>{{color.color}}</option>
+            {%else%}
+        <option value='{{color.color}}' style='color: {{color.color}}'>{{color.color}}</option>
+            {%endif%}
+        {%endfor%}
+
+        
+    </select>
+    </div>
+    <input type="hidden" name="request" value="changecontents">
+    <input type="submit" value="変更"/>
+    </form>
+{%endif%}
+
+
+    
+</body>
+</html>

@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from main.models import TimeTable,LessonField,link,Separation
 from main.timetable import createtimetable
 import copy
+from . import color
 # Create your views here.
 
 @login_required
@@ -23,7 +24,7 @@ def timetable(request):
             if(LessonField.objects.filter(period=sep.period,dayof=i,timetable=timetable).exists()):
                 lesson = LessonField.objects.get(period=sep.period,dayof=i,timetable=timetable)
                 print(lesson.name+":"+str(lesson.period)+":"+str(lesson.dayof))
-                d={"name":lesson.name,"color":lesson.color}
+                d={"name":lesson.name,"color":lesson.color,"id":lesson.id}
                 ds.append(d)
             else:
                 ds.append({"name":""})
@@ -109,6 +110,41 @@ def createlessonfield(request):
     timetable = timetable)
     lesson.save()
     return redirect("main:home")
+
+@login_required
+def contentslessonfield(request,id):
+    user = request.user
+    if(not TimeTable.objects.filter(user = user).exists()):
+        return redirect("main:tablestatus")
+
+    timetable=TimeTable.objects.get(user = user)
+    separations = Separation.objects.filter(timetable=timetable).order_by("period")
+
+    if(not LessonField.objects.filter(id=id,timetable=timetable).exists()):
+        return redirect("main:home")
+
+    lesson=LessonField.objects.get(id=id)
+
+    if(request.method == "POST"):
+        if(request.POST["request"]=="changepage"):
+            colors = color.Colors()
+            colorlst=colors.get_color()
+            c=[]
+            for i in range(colors.get_len()):
+                data={"color":colorlst[i],"selected":colorlst[i]==lesson.color}
+                c.append(data)
+            data={"nums":range(1,separations.count()+1),"lesson":lesson,"type":"changecontent","colors":c}
+            return render(request,"timetable/contentslessonfield.html",data)
+        if(request.POST["request"]=="changecontents"):
+            lesson.name=request.POST["name"]
+            lesson.content=request.POST["content"]
+            lesson.color=request.POST["color"]
+            lesson.save()
+    text=["月","火","水","木","金","土"]
+    data={"lesson":lesson,"week":text[lesson.dayof],"type":"nomal"}
+    return render(request,"timetable/contentslessonfield.html",data)
+
+
 
     
     
