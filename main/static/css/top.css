@@ -1,0 +1,22 @@
+.top-title{
+    padding-top:100px;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    background-size: contain;
+    text-align: center;
+    font-size:30px;
+    padding-bottom:5px;
+    border-bottom:solid 3px;
+    margin-bottom: 30px;
+}
+
+.top-contents{
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: center;
+    font-size:30px;
+    padding-bottom:5px;
+    border-bottom:solid 3px;
+}

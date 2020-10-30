@@ -1,20 +1,21 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>授業の追加</title>
+{% extends "base.html" %}
+{% block title %}授業の作成{% endblock %}
+{% block content %}
     {% load static %}
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="{%static 'js/selectColor.js'%}"></script>
-<body>
+    <div style="margin-top:80px;"></div>
     <form method="POST">
         {%csrf_token%}
+        <div class="content">
         <h3>授業名</h3>
         <input type="text" size="5" name='name'>
-        <br>
-        <h3>授業について</h3>
+        </div>
+        <div class="content">
+        <h3>授業の概要・説明</h3>
         <textarea name='content' cols="60" rows="4"></textarea>
+        </div>
+        <div class="content">
         <h3>曜日</h3>
         <select name='dayof'>
             <option value='0'>月曜</option>
@@ -24,12 +25,16 @@
             <option value='4'>金曜</option>
             <option value='5'>土曜</option>
         </select>
+    </div>
+    <div class="content">
 　　　　<h3>時間</h3>
         <select name='periodnum'>
             {%for num in nums%}
             <option value='{{num}}'>{{num}}限</option>
             {%endfor%}
         </select>
+    </div>
+    <div class="content">
         <h3 >色</h3>
         <div >
         <select class="selectColor" name='color'>
@@ -52,7 +57,10 @@
             <option value='purple' style="color:purple;">purple</option>
         </select>
         </div>
-        <input type="submit" value="追加"/>
+        </div>
+        <div class="button">
+            <span><label for="cl-ci2">授業を作成</label></span>
+    </div>
+        <input id="ci2" class="changeinput" type="submit" value="追加"/>
         </form>
-</body>
-</html>
+        {% endblock %}

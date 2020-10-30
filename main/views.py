@@ -2,12 +2,14 @@ from django.shortcuts import render ,redirect
 from django.contrib.auth.decorators import login_required
 from main.models import TimeTable,LessonField,link,Separation
 from main.timetable import createtimetable
+from django.utils import timezone
 import copy
 from . import color
 # Create your views here.
 
 @login_required
 def home(request):
+
     return render(request,"main/home.html")
 
 @login_required

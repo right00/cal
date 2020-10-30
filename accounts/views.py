@@ -7,11 +7,11 @@ def signup(request):
         data={}
     else :
         email = request.POST["email"]
-        password = request.POST["password"]
-        repassword = request.POST["repassword"]
+        password = request.POST["pw"]
+        repassword = request.POST["rpw"]
         #パスワードが一致しない場合
-        if(password != repassword):
-            data = {"message":"パスワードが一致しません","email":email}
+        if(password != repassword or len(password)<4 or password==None):
+            data = {"message":"パスワードに誤りがあります","email":email}
         #ユーザーの作成に成功
         else:
             newuser = User.objects.create_user(email = email)

@@ -12,6 +12,17 @@
     <div class="header">
         <a href="{%url 'main:home'%}"><div class="header-textbox">NOWRAIO</div></a>
     </div>
+    <div id="side">
+    <input id="menuopen-input" type="checkbox">
+    <label for="menuopen-input"></label>
+<div id="sidebar">
+  <p><a></a></p>
+  <p><a href='{% url "main:timetable" %}'>時間割</a></p>
+  <p><a href="{% url 'main:tablestatus' %}">時間割の設定</a></p>
+  <p><a href="{% url 'main:createlessonfield' %}">授業の追加</a></p>
+  <p><a href='{% url "logout" %}'>logout</a></p>
+</div>
+    </div>
   <div id='center' class="main center">
     {% block content %}
     {{ content }}

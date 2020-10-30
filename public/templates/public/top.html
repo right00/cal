@@ -3,16 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {%load static%}
+    <link rel="stylesheet" href="{%static 'css/base.css'%}">
+    <link rel="stylesheet" href="{%static 'css/top.css'%}">
     <title>top</title>
 </head>
-<body>
-    <h1>top</h1>
-    {% if user.is_authenticated %}
-    <p>Hello. {{ user.username }}!</p>
-    <a href="{% url 'main:home' %}">home</a>
-    {% else %}
-    <p>You are not logged in.</p>
-    <p><a href="{% url 'login' %}">login</a></p>
-    {% endif %}
+            {% if user.is_authenticated %}
+            <body style="margin: 0;"><div class="header">
+    <a href="{%url 'main:home'%}"><div class="header-textbox">NOWRAIO</div></a>
+    </div>
+    <div class="top-title">NOWRAIO</div>
+    <div>HOMEへ移動</div>
+            {% else %}
+            <body style="margin: 0;"><div class="header">
+            <a href="{%url 'login'%}"><div class="header-textbox">NOWRAIO</div></a>
+            </body>
+            <div class="top-title">
+                NOWRAIO
+            </div>
+            <p class="top-content"><a href="{%url 'login'%}">ログインする</a></p>
+            <p class="top-content"><a href="{%url 'signup:signup'%}">アカウントを作成する</a></p>
+            {% endif %}
+        
 </body>
 </html>

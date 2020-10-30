@@ -1,19 +1,16 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>時間割</title>
-</head>
-<body>
-    <h2>timetable</h2>
 
-    <p><a href="{% url 'main:tablestatus' %}">時間割の設定</a></p>
-    <p><a href="{% url 'main:createlessonfield' %}">授業の追加</a></p>
-    <table >
+    {% extends "base.html" %}
+    {% block title %}時間割{% endblock %}
+    {% block content %}
+    <h1 class="title">時間割</h1>
+    <div class="linkbuttonbox">
+    <span><a href="{% url 'main:tablestatus' %}">時間割の設定</a></span>
+    <span><a href="{% url 'main:createlessonfield' %}">授業の追加</a></span>
+    </div>
+    <div class="timetablebox">
+    <table class="timetable" >
         <tr>
-          <th> </th>
-          <th>　　日　　</th>
+          <th class="fixedcont"> </th>
           <th>　　月　　</th>
           <th>　　火　　</th>
           <th>　　水　　</th>
@@ -23,7 +20,7 @@
      </tr>
      {%for content in contents%}
      <tr>
-         <th>{{content.period.period}}限</th>
+         <th class="fixedcont">{{content.period.period}}限</th>
          {%for lesson in content.week %}
          {%if lesson.color%}
          <td ><a href="../lesson/contents/{{lesson.id}}/"style="color:{{lesson.color}}">{{lesson.name}}</td>
@@ -35,5 +32,5 @@
      </tr>
      {%endfor%}
       </table>
-</body>
-</html>
+    </div>
+    {% endblock %}

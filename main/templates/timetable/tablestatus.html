@@ -1,24 +1,24 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>時間割の詳細</title>
-</head>
-<body>
-    <h2>{{timetable.name}}</h2>
+{% extends "base.html" %}
+{% block title %}時間割の編集{% endblock %}
+{% block content %}
+    <h1 class="title">{{timetable.name}}</h1>
     <nobr>
+        <div class="linkbuttonbox">
+            <span><label for="ts-ci1" >追加</label></span>
+            <span><label for="ts-ci2">削除</label></span>
+            </div>
     <form method="POST">
         {%csrf_token%}
         <input type="hidden" name="type" value="add">
-         <input type="submit" value="追加">
+         <input id="ts-ci1" class="changeinput" type="submit" value="追加">
     </form>
     <form method="POST">
             {%csrf_token%}
             <input type="hidden" name="type" value="del">
-            <input type="submit" value="削除">
+            <input id="ts-ci2" class="changeinput" type="submit" value="削除">
     </form>
     <br>
+    <div class="content">
     {% for sep in seps %}
     <form method="POST">
     {%csrf_token%}
@@ -30,8 +30,10 @@
          <input type="submit" value="変更"/>
     </form>
     {%endfor%}
+    </div>
     {%if massage%}
     <script>alert("{{message}}");</script>
     {%endif%}
 </body>
 </html>
+{% endblock %}
