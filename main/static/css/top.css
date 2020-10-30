@@ -12,11 +12,16 @@
 }
 
 .top-contents{
+    display: block;
     width: 80%;
     margin-left: 10%;
     margin-right: 10%;
     text-align: center;
-    font-size:30px;
+    font-size:20px;
     padding-bottom:5px;
-    border-bottom:solid 3px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+a.top-contents{
+    display: inline-block;
 }

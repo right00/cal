@@ -39,4 +39,17 @@ class Separation(models.Model):
         result = num.groups()
         return  int(result[0]),int(result[1])
         
+    def get_already(self,now):
+        num = re.match(r'([0-9]{1,2}):([0-9]{1,2})', self.end) 
+        result = num.groups()
+        now = re.match(r'([0-9]{1,2}):([0-9]{1,2})', now)
+        result_now = now.groups()
+        
+        if(int(result[0])<int(result_now[0])):
+            return True
+        
+        elif(int(result[0])==int(result_now[0]) and int(result[1])<int(result_now[1])):
+            return True 
+        
+        return False
     

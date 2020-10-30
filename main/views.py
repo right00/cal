@@ -5,12 +5,32 @@ from main.timetable import createtimetable
 from django.utils import timezone
 import copy
 from . import color
+from django.utils.timezone import localtime 
 # Create your views here.
 
 @login_required
 def home(request):
-
-    return render(request,"main/home.html")
+    user = request.user
+    if(not TimeTable.objects.filter(user = user).exists()):
+        return render(request,"main/home.html")
+    now = localtime(timezone.now())
+    text=["月","火","水","木","金","土","日"]
+    timetable = TimeTable.objects.get(user = user)
+    separations = Separation.objects.filter(timetable=timetable).order_by("period")
+    contents = []
+    t = now.strftime('%H:%M')
+    print(t)
+    i = now.weekday()
+    for sep in separations:
+        print(sep.get_already(t))
+        if(sep.get_already(t)!=True and LessonField.objects.filter(period=sep.period,dayof=i,timetable=timetable).exists()):
+            lesson = LessonField.objects.get(period=sep.period,dayof=i,timetable=timetable)
+            print(sep.end)
+            d={"lesson":lesson,"sep":sep}
+            contents.append(d)
+    data={"contents":contents}
+    print(data)
+    return render(request,"main/home.html",data)
 
 @login_required
 def timetable(request):
@@ -142,6 +162,9 @@ def contentslessonfield(request,id):
             lesson.content=request.POST["content"]
             lesson.color=request.POST["color"]
             lesson.save()
+        if(request.POST["request"]=="deletepage"):
+            lesson.delete()
+            return redirect("main:timetable")
     text=["月","火","水","木","金","土"]
     data={"lesson":lesson,"week":text[lesson.dayof],"type":"nomal"}
     return render(request,"timetable/contentslessonfield.html",data)

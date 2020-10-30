@@ -8,21 +8,22 @@
     <link rel="stylesheet" href="{%static 'css/top.css'%}">
     <title>top</title>
 </head>
+<body style="margin: 0;">
             {% if user.is_authenticated %}
-            <body style="margin: 0;"><div class="header">
+            <div class="header">
     <a href="{%url 'main:home'%}"><div class="header-textbox">NOWRAIO</div></a>
     </div>
     <div class="top-title">NOWRAIO</div>
-    <div>HOMEへ移動</div>
+    <p class="top-content" class="top-contents"><a class="top-contents" href="{%url 'main:home'%}">HOMEへ</a></p>
             {% else %}
-            <body style="margin: 0;"><div class="header">
+           <div class="header">
             <a href="{%url 'login'%}"><div class="header-textbox">NOWRAIO</div></a>
-            </body>
+            </div>
             <div class="top-title">
                 NOWRAIO
             </div>
-            <p class="top-content"><a href="{%url 'login'%}">ログインする</a></p>
-            <p class="top-content"><a href="{%url 'signup:signup'%}">アカウントを作成する</a></p>
+            <div class="top-contents"><a class="top-contents" href="{%url 'login'%}">ログインする</a></div>
+            <div class="top-contents"><a class="top-contents" href="{%url 'signup:signup'%}">アカウントを作成する</a></div>
             {% endif %}
         
 </body>
