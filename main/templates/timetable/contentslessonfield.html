@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}授業の作成{% endblock %}
+{% block content %}
+{%load static%}
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="{% static 'js/link.js' %}"></script>
+{% if type == "nomal" %}
+<h1 class="title" ><span style="color: {{lesson.color}};">{{lesson.name}}</span></h1>
+<div class="linkbuttonbox">
+    <span><label for="ci1">内容を変更する</label></span>
+    <span><label for="ci3">授業を削除する</label></span>
+    </div>
+    <h4>{{week}}曜日</h4>
+    <h4>{{lesson.period}}限</h4>
+    <div class="box"><div class="autolink" >{{lesson.content}}</div></div>
+    <form method="POST">
+        {%csrf_token%}
+
+        <input type="hidden" name="request" value="changepage"/>
+        <input id="ci1" class="changeinput" type="submit" value="変更"/>
+    </form>
+    <form method="POST">
+        {%csrf_token%}
+
+        <input type="hidden" name="request" value="deletepage"/>
+        <input id="ci3" class="changeinput" type="submit" value="変更"/>
+    </form>
+{%elif type == "changecontent" %}
+<div style="margin-top:80px;"></div>
+<form method="POST" >
+    {%csrf_token%}
+    <div class="content">
+    <h3>授業名</h3>
+    <input type="text" size="5" name='name' value="{{lesson.name}}">
+    </div>
+    <div class="content">
+    <h3>授業について</h3>
+    <textarea name='content' cols="60" rows="4" >{{lesson.content}}</textarea>
+    </div>
+    <div class="content">
+    <h3 >色</h3>
+    <div >
+    <select class="selectColor" name='color' >
+        {%for color in colors%}
+
+            {%if color.selected%}
+        <option value='{{color.color}}' style='color: {{color.color}}' selected>{{color.color}}</option>
+            {%else%}
+        <option value='{{color.color}}' style='color: {{color.color}}'>{{color.color}}</option>
+            {%endif%}
+        {%endfor%}
+        
+    </select>
+    </div>
+    </div>
+    <div class="button">
+            <span><label for="ci2">内容を変更する</label></span>
+            <span><a href="">変更をリセット</a></span>
+    </div>
+    <input type="hidden" name="request" value="changecontents">
+    <input id="ci2" class="changeinput" type="submit" value="変更"/>
+    </form>
+{%endif%}
+
+{% endblock %}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {%load static%}
+    <link rel="stylesheet" href="{%static 'css/base.css'%}">
+    <link rel="stylesheet" href="{%static 'css/top.css'%}">
+    <title>top</title>
+</head>
+<body style="margin: 0;">
+            {% if user.is_authenticated %}
+            <div class="header">
+    <a href="{%url 'main:home'%}"><div class="header-textbox">NOWRAIO</div></a>
+    </div>
+    <div class="top-title">NOWRAIO</div>
+    <p class="top-content" class="top-contents"><a class="top-contents" href="{%url 'main:home'%}">HOMEへ</a></p>
+            {% else %}
+           <div class="header">
+            <a href="{%url 'login'%}"><div class="header-textbox">NOWRAIO</div></a>
+            </div>
+            <div class="top-title">
+                NOWRAIO
+            </div>
+            <div class="top-contents"><a class="top-contents" href="{%url 'login'%}">ログインする</a></div>
+            <div class="top-contents"><a class="top-contents" href="{%url 'signup:signup'%}">アカウントを作成する</a></div>
+            {% endif %}
+        
+</body>
+</html>

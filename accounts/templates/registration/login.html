@@ -1,0 +1,35 @@
+<html lang="ja"><head><meta charset="utf-8"></head>
+  {%load static%}
+  <link rel="stylesheet" href="{%static 'css/base.css'%}">
+  <link rel="stylesheet" href="{%static 'css/login.css'%}">
+  <body>
+    <body style="margin: 0;"><div class="header">
+      <a href="{%url 'public:top'%}"><div class="header-textbox">NOWRAIO</div></a>
+      </div>
+      <div>
+    <h1 class="title">Login</h1>
+      </div>
+{% if form.errors %}
+<div class="content">
+<p>メールアドレスとパスワードが一致しません。もう一度お願いします。</p>
+</div>
+{% endif %}
+    <div class="f-content">
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+    </div>
+    <div class="button" style="margin-left: 60px;">
+      <span><label for="lg-ci1">送信</label></span>
+  </div>
+      <input id="lg-ci1" class="changeinput" type="submit" value="Login" />
+    </form>
+
+    <div style="margin-top:40px"></div>
+
+    <div class="f-content">
+    <p><a href="{% url 'public:top' %}">topへ戻る</a><span style="margin-left:30px"></span>
+      <a href="{% url 'signup:signup' %}">ユーザーを作成する</a></p>
+    </div>
+  </body>
+</html>

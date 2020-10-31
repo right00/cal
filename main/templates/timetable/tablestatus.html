@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}時間割の編集{% endblock %}
+{% block content %}
+    <h1 class="title">{{timetable.name}}</h1>
+    <nobr>
+        <div class="linkbuttonbox">
+            <span><label for="ts-ci1" >追加</label></span>
+            <span><label for="ts-ci2">削除</label></span>
+            </div>
+    <form method="POST">
+        {%csrf_token%}
+        <input type="hidden" name="type" value="add">
+         <input id="ts-ci1" class="changeinput" type="submit" value="追加">
+    </form>
+    <form method="POST">
+            {%csrf_token%}
+            <input type="hidden" name="type" value="del">
+            <input id="ts-ci2" class="changeinput" type="submit" value="削除">
+    </form>
+    <br>
+    <div class="content">
+    {% for sep in seps %}
+    <form method="POST">
+    {%csrf_token%}
+    <input type="hidden" name="type" value="chenge">
+    <h3>{{sep.period}}限</h3>
+    <input type="hidden" name = "num" value="{{sep.period}}" />
+    <p><input type="text" name="starth" size = "1" value="{{sep.starth}}" />:<input type="text" name="startm" size = "1" value="{{sep.startm}}" />
+         ~ <input type="text" name="endh" size = "1" value="{{sep.endh}}" />:<input type="text" name="endm" size = "1" value="{{sep.endm}}" /></p>
+         <input type="submit" value="変更"/>
+    </form>
+    {%endfor%}
+    </div>
+    {%if massage%}
+    <script>alert("{{message}}");</script>
+    {%endif%}
+</body>
+</html>
+{% endblock %}

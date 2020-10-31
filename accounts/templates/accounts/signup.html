@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    {%load static%}
+    <link rel="stylesheet" href="{%static 'css/base.css'%}">
+</head>
+    <body style="margin: 0;">
+    <div class="header">
+    <a href="{%url 'main:home'%}"><div class="header-textbox">NOWRAIO</div></a>
+    </div>
+    <div style="margin-top:100px;"></div>
+    {%if message %}
+    <div class="content">
+    <h2>{{message}}</h2>
+    </div>
+    {%endif%}
+    <form method="POST">
+        {% csrf_token %}
+        {%if email%}
+        <div class="content">
+        <h3>メールアドレス</h3>
+        <input type="input" min="1" name="email" value="{{email}}"><br>
+        </div>
+        {%else%}
+        <div class="content">
+        <h3>メールアドレス</h3>
+        <input type="input" min="1" name="email"><br>
+        </div>
+        {%endif%}
+        <div class="content">
+        <h3>パスワード(4文字以上)</h3> 
+        <input type="password" min="4" name="pw"><br>
+        </div>
+        <div class="content">
+        <h3>パスワード(確認用)</h3>
+        <input type="password" min="4" name="rpw"><br>
+        </div>
+        <div class="button" style="margin-left: 40px;">
+            <span><label for="su-ci1">送信</label></span>
+        </div>
+        <input id="su-ci1" class="changeinput" type="submit" name="送信">
+    </form>
+</body>
+</html>

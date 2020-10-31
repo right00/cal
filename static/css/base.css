@@ -1,0 +1,303 @@
+
+body{
+    margin: 0;
+    padding: 0;
+}
+.header{
+    position: fixed;
+    top:0;
+    width:100%;
+    height: 80px;
+    margin: auto;
+    padding: 0;
+    background-color: olivedrab;
+    text-align: center;
+    background: -moz-radial-gradient(olivedrab 20%, yellowgreen 70%); 
+    background: -webkit-radial-gradient(olivedrab 20%, yellowgreen 70%); 
+    background: radial-gradient(olivedrab 20%, yellowgreen 70%); 
+    z-index: 10;
+}
+.header-textbox{
+    width: 40%;
+    font-size: 60px;
+    display: inline-block;
+    bottom:10px;
+    margin-right: 30%;
+    margin-left: 30%;
+    margin-bottom: 10px;
+    padding:auto;
+    letter-spacing: 10px;
+    color:whitesmoke
+}
+
+#menuopen-input+label{
+    position:fixed; 
+    margin: 0;
+    left: 10px; 
+    top: 10px; 
+    height: 60px; 
+    width: 60px;
+    z-index: 11;
+    background-image: url("/static/img/img1.png");
+    background-size: cover;
+}
+#menuopen-input:checked+label{
+    position:fixed; 
+    margin: 0;
+    left: 10px; 
+    top: 10px; 
+    height: 60px; 
+    width: 60px;
+    z-index: 11;
+    background-image: url("/static/img/img2.png");
+    background-size: cover;
+}
+#menuopen{
+    display: none;
+    transition: none 2s;
+}
+
+#sidebar{
+    height: 100%;
+    display: inline;
+    position: fixed;
+    margin: 0;
+    left:0;
+    width:20px;
+    background-color:  #ebffcc;
+    z-index: 9;
+}
+
+#menuopen-input:checked~#sidebar{
+    height: 100%;
+    display: inline;
+    position: fixed;
+    margin: 0;
+    left:0;
+    padding-top:78.5px;
+    width:200px;
+    border-top: solid black 3px;
+    background-color:  #ebffcc;
+    z-index: 9;
+}
+#menuopen-input~#sidebar p{
+    display: none;
+}
+#menuopen-input~#sidebar a{
+    display: none;
+}
+#menuopen-input:checked~#sidebar p{
+    display: block;
+    margin: 0;
+    margin-top: 10px;
+    border-bottom:solid 2px dimgrey;
+    margin-left: 15px;
+    width: 150px;
+    height: 20px;
+    padding-bottom: 4px;
+    padding-left: 10px;
+}
+
+#menuopen-input:checked~#sidebar a{
+    display: inline;
+    color: #002f0f;
+    text-decoration: none;
+}
+#center{
+    position: relative;
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 90%;
+    background-color: whitesmoke;
+    min-height: 100vh;
+    height: auto;
+}
+
+.title {
+    padding-top: 100px;
+    font-size: 50px;
+    margin-left:60px;
+    margin-right:60px;
+    padding-left: 10px;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: solid 3px;
+}
+
+.linkbuttonbox{
+    margin-left:60px;
+    margin-right:60px;
+    text-align: left;
+    margin-bottom: 40px;
+}
+
+.linkbuttonbox span{
+    margin: 20px 20px 20px 20px;
+    height: 40px;
+    width: 120px;
+    display: inline-block;
+    border-radius: 12px 12px 12px 12px;
+    background-color: yellowgreen;
+    border: double whitesmoke 3px;
+}
+
+.linkbuttonbox a{
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    color:whitesmoke;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    padding-top:10px;
+    font-weight: 900;  
+}
+
+.linkbuttonbox label{
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    color:whitesmoke;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    padding-top:10px;
+    font-weight: 900;  
+}
+.timetablebox{
+    overflow-y: scroll;
+}
+.timetable{
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 80px;
+    width: max(800px,90%);
+    border-collapse:separate;
+    border-spacing: 0;
+  }
+  
+  .timetable th:first-child{
+    border-radius: 5px 0 0 0;
+  }
+  
+  .timetable th:last-child{
+    border-radius: 0 5px 0 0;
+    border-right: 1px solid #3c6690;
+  }
+  
+  .timetable th{
+    text-align: center;
+    color:white;
+    background: linear-gradient(#829ebc,#225588);
+    border-left: 1px solid #3c6690;
+    border-top: 1px solid #3c6690;
+    border-bottom: 1px solid #3c6690;
+    box-shadow: 0px 1px 1px rgba(255,255,255,0.3) inset;
+    width: 45px;
+    padding: 10px 0;
+    height: 55px;
+  }
+  
+  .timetable td{
+    text-align: center;
+    border-left: 1px solid #a8b7c5;
+    border-bottom: 1px solid #a8b7c5;
+    border-top:none;
+    box-shadow: 0px -3px 5px 1px #eee inset;
+    width: 90px;
+    padding: 10px 0;
+    height: 55px;
+  }
+  
+  .timetable td:last-child{
+    border-right: 1px solid #a8b7c5;
+  }
+  
+  .timetable tr:last-child td:first-child {
+    border-radius: 0 0 0 5px;
+  }
+  
+  .timetable tr:last-child td:last-child {
+    border-radius: 0 0 5px 0;
+  }
+
+  
+  .fixedcont{
+    position: sticky;
+    left:0;
+}
+h4{
+    padding-top: 5px;
+    font-size: 30px;
+    margin-left:60px;
+    margin-right:60px;
+    padding-left: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+}
+.box{
+    overflow-y: scroll;
+    margin-left: 60px;
+    margin-right:60px;
+}
+.autolink{
+    border:solid 5px dimgray;
+    font-size: 18px;
+    min-height: 120px;
+}
+.changeinput{
+    display: none;
+}
+.content{
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-top:5px;
+    padding-bottom: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.content h3{
+    font-size: 25px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    border-bottom: solid 3px dimgray;
+    background-color: #fff;
+}
+.button{
+    margin-left:40px; 
+}
+.button span{
+        margin-right: 20px;
+        height: 40px;
+        width: 120px;
+        display: inline-block;
+        border-radius: 12px 12px 12px 12px;
+        background-color: gray;
+        border: double whitesmoke 3px;
+}
+.button label{
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    color:whitesmoke;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    padding-top:10px;
+    font-weight: 900;  
+}
+.button a{
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    color:whitesmoke;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    padding-top:10px;
+    font-weight: 900;  
+}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}home{% endblock %}
+{% block content %}
+{%load static%}
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="{% static 'js/link.js' %}"></script>
+<h1 class="title">home</h1>
+{%if contents%}
+{%for content in contents%}
+    <div class="content">
+    <h4><span style="font-size:40px; margin-bottom: 5px;padding-bottom: 5px; color:{{content.lesson.color}}">{{content.lesson.name}}</span></h4>
+    <h4 style="margin-top: 0;">{{content.lesson.period}}限 ( {{content.sep.start}} ~ {{content.sep.end}} )</h4>
+    <div class="box"><div class="autolink" >{{content.lesson.content}}</div></div>
+    </div>
+{%endfor%}
+{%else%}
+<div class="contents">
+    <h4>本日の授業はありません</h4>
+</div>
+{%endif%}
+
+{% endblock %}
