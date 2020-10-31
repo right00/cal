@@ -19,17 +19,13 @@ def home(request):
     separations = Separation.objects.filter(timetable=timetable).order_by("period")
     contents = []
     t = now.strftime('%H:%M')
-    print(t)
     i = now.weekday()
     for sep in separations:
-        print(sep.get_already(t))
         if(sep.get_already(t)!=True and LessonField.objects.filter(period=sep.period,dayof=i,timetable=timetable).exists()):
             lesson = LessonField.objects.get(period=sep.period,dayof=i,timetable=timetable)
-            print(sep.end)
             d={"lesson":lesson,"sep":sep}
             contents.append(d)
     data={"contents":contents}
-    print(data)
     return render(request,"main/home.html",data)
 
 @login_required
