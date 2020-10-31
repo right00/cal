@@ -1,6 +1,6 @@
 from django.shortcuts import render ,redirect
 from django.contrib.auth.decorators import login_required
-from main.models import TimeTable,LessonField,link,Separation
+from main.models import TimeTable,LessonField,Separation
 from main.timetable import createtimetable
 from django.utils import timezone
 import copy

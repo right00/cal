@@ -18,11 +18,6 @@ class LessonField(models.Model):
     timetable = models.ForeignKey(TimeTable,on_delete=models.CASCADE)
 
 
-class link(models.Model):
-    value = models.TextField()
-    url = models.TextField()
-    lessonfield = models.ForeignKey(LessonField,on_delete=models.CASCADE)
-
 class Separation(models.Model):
     period = models.IntegerField()
     start = models.CharField(max_length=5)

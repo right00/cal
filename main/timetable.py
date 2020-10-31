@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from main.models import TimeTable,LessonField,link,Separation
+from main.models import TimeTable,LessonField,Separation
 
 start = ["9:00","10:40","13:00","14:45","16:30"]
 end = ["10:30","12:10","14:30","16:15","18:00"] 
